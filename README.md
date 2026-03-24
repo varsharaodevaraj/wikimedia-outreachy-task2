@@ -7,3 +7,11 @@ Create a Python script to read a list of URLs from a CSV file and print the resp
 
 ```text
 (STATUS CODE) URL
+
+File
+task2_status_codes.py
+
+How to run
+python3 task2_status_codes.py "Task 2 - Intern.csv"
+
+```text
