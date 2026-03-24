@@ -13,5 +13,3 @@ task2_status_codes.py
 
 How to run
 python3 task2_status_codes.py "Task 2 - Intern.csv"
-
-```text
