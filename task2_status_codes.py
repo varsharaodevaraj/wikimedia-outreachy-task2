@@ -7,7 +7,7 @@ from urllib.error import HTTPError, URLError
 def get_status_code(url: str, timeout: int = 10) -> str:
     """
     Return the HTTP status code for a URL,
-    or a detailed error message if it fails.
+    or a categorized error message.
     """
     try:
         request = Request(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -15,13 +15,18 @@ def get_status_code(url: str, timeout: int = 10) -> str:
             return str(response.getcode())
 
     except HTTPError as error:
-        return f"HTTPError:{error.code}"
+        return f"HTTP_ERROR:{error.code}"
 
     except URLError as error:
-        return f"URLError:{error.reason}"
+        reason = str(error.reason).lower()
+
+        if "timed out" in reason:
+            return "TIMEOUT"
+        else:
+            return "CONNECTION_ERROR"
 
     except Exception as error:
-        return f"Exception:{type(error).__name__}"
+        return f"EXCEPTION:{type(error).__name__}"
 
 
 def read_urls_from_csv(csv_path: str) -> list[str]:
